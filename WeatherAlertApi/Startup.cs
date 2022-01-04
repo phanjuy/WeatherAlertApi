@@ -26,6 +26,8 @@ namespace WeatherAlertApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherAlertApi", Version = "v1" });
             });
+
+            services.AddHttpClient("weather", c => c.BaseAddress = new Uri("http://samples.openweathermap.org/data/2.5/"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
