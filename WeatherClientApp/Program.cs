@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace WeatherClientApp
@@ -9,9 +10,12 @@ namespace WeatherClientApp
     {
         private static int[] zips = new int[] { 08816, 08536, 08810, 08812, 08817, 08832 };
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            await foreach (var humidity in GetHumidity())
+            {
+                Console.WriteLine($"Humidity for zip {humidity.Zip} is {humidity.Humidity}");
+            }
         }
 
         private static async IAsyncEnumerable<MainModel> GetHumidity()
